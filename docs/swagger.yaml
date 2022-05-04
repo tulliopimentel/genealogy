@@ -11,7 +11,7 @@ definitions:
         $ref: '#/definitions/models.Person'
       personFamily:
         $ref: '#/definitions/models.Person'
-      personFamilyID:
+      personID:
         type: integer
       relationship:
         $ref: '#/definitions/models.Relationship'
@@ -117,9 +117,7 @@ paths:
         "200":
           description: OK
           schema:
-            items:
-              $ref: '#/definitions/models.Family'
-            type: array
+            $ref: '#/definitions/models.Family'
         "404":
           description: Not Found
           schema:

@@ -26,15 +26,15 @@ CREATE TABLE `families` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `relationship_id` int(11) DEFAULT NULL,
   `person_id` int(11) DEFAULT NULL,
-  `family_person_id` int(11) DEFAULT NULL,
+  `person_family_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_family_relationship_idx` (`relationship_id`),
   KEY `fk_family_people_idx` (`person_id`),
-  KEY `fk_family_person_idx` (`family_person_id`),
+  KEY `fk_family_person_idx` (`person_family_id`),
   CONSTRAINT `fk_family_people` FOREIGN KEY (`person_id`) REFERENCES `people` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_family_person` FOREIGN KEY (`family_person_id`) REFERENCES `people` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_family_relationship` FOREIGN KEY (`relationship_id`) REFERENCES `relationships` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=latin1;
+  CONSTRAINT `fk_family_relationship` FOREIGN KEY (`relationship_id`) REFERENCES `relationships` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_person_family` FOREIGN KEY (`person_family_id`) REFERENCES `people` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=89 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -56,11 +56,10 @@ DROP TABLE IF EXISTS `genealogies`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `genealogies` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `person_id` int(11) NOT NULL,
+  `person_id` int(11) unsigned NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_genealogies_family1_idx` (`person_id`),
-  CONSTRAINT `fk_genealogies_family1` FOREIGN KEY (`person_id`) REFERENCES `families` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
+  KEY `fk_genealogies_family1_idx` (`person_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -69,7 +68,7 @@ CREATE TABLE `genealogies` (
 
 LOCK TABLES `genealogies` WRITE;
 /*!40000 ALTER TABLE `genealogies` DISABLE KEYS */;
-INSERT INTO `genealogies` VALUES (15,1),(16,2),(17,3),(18,4),(19,5),(20,6),(21,7),(22,8),(23,9),(24,10),(25,11),(26,12),(27,13),(28,14);
+INSERT INTO `genealogies` VALUES (1,1),(2,2),(3,3),(4,4),(5,5),(6,6),(7,7),(8,8),(9,9),(10,10),(11,11),(12,12),(13,13),(14,14);
 /*!40000 ALTER TABLE `genealogies` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -84,7 +83,7 @@ CREATE TABLE `people` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -93,7 +92,7 @@ CREATE TABLE `people` (
 
 LOCK TABLES `people` WRITE;
 /*!40000 ALTER TABLE `people` DISABLE KEYS */;
-INSERT INTO `people` VALUES (1,'Sony'),(2,'Martin'),(3,'Anastasia'),(4,'Ellen'),(5,'Oprah'),(6,'Mike'),(7,'Phobe'),(8,'Ursula'),(9,'Eric'),(10,'Ariel'),(11,'Dunny'),(12,'Bruce'),(13,'Jacqueline'),(14,'Melody');
+INSERT INTO `people` VALUES (1,'Sony'),(2,'Martin'),(3,'Anastasia'),(4,'Ellen'),(5,'Oprah'),(6,'Mike'),(7,'Phobe'),(8,'Ursula'),(9,'Eric'),(10,'Ariel'),(11,'Dunny'),(12,'Bruce'),(13,'Jacqueline'),(14,'Melody'),(18,'teste'),(21,''),(22,'');
 /*!40000 ALTER TABLE `people` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -108,7 +107,7 @@ CREATE TABLE `relationships` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -130,4 +129,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-03 23:44:00
+-- Dump completed on 2022-05-04  2:09:55

@@ -84,10 +84,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/models.Family"
-                            }
+                            "$ref": "#/definitions/models.Family"
                         }
                     },
                     "404": {
@@ -195,7 +192,7 @@ const docTemplate = `{
                 "personFamily": {
                     "$ref": "#/definitions/models.Person"
                 },
-                "personFamilyID": {
+                "personID": {
                     "type": "integer"
                 },
                 "relationship": {

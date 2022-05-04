@@ -35,9 +35,13 @@ func ShowGenealogy(c *gin.Context){
 	err = db.Model(&genealogy).
 	Preload("Person").
 	Preload("PersonFamily").
+	Preload("PersonFamily.Family").
 	Preload("PersonFamily.Person").
 	Preload("PersonFamily.PersonFamily").
 	Preload("PersonFamily.Relationship").
+	Preload("PersonFamily.Family.Person").
+	Preload("PersonFamily.Family.PersonFamily").
+	Preload("PersonFamily.Family.Relationship").
 	Find(&genealogy, "person_id = ?", newid).Error
 
 	if err != nil{
@@ -71,7 +75,7 @@ func CreateGenealogy (newGenealogy *gin.Context){
 		return
 	}
 
-	db.Create(&genealogy)
+	db.Select("PersonID", "PersonFamilyID", "RelationshipID").Save(&genealogy)
 
 	if err != nil {
 		newGenealogy.JSON(400, gin.H{

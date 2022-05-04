@@ -1,0 +1,147 @@
+definitions:
+  models.Family:
+    properties:
+      family:
+        items:
+          $ref: '#/definitions/models.Family'
+        type: array
+      id:
+        type: integer
+      person:
+        $ref: '#/definitions/models.Person'
+      personFamily:
+        $ref: '#/definitions/models.Person'
+      relationship:
+        $ref: '#/definitions/models.Relationship'
+    type: object
+  models.Genealogy:
+    properties:
+      id:
+        type: integer
+      person:
+        $ref: '#/definitions/models.Person'
+      personFamily:
+        items:
+          $ref: '#/definitions/models.Family'
+        type: array
+      personID:
+        type: integer
+    type: object
+  models.Person:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+    type: object
+  models.Relationship:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+    type: object
+host: localhost:5050
+info:
+  contact:
+    url: "LinkedIn    \thttps://www.linkedin.com/in/tulliopimentelbarbosa/"
+  description: This is the documentation of the Genealogy API
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Genealogy API
+  version: "1.0"
+paths:
+  /v1/person:
+    get:
+      description: Get all persons of the database, even if is not related to each
+        other
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Person'
+            type: array
+        "404":
+          description: Not Found
+          schema:
+            type: object
+      summary: Get all persons of the database
+      tags:
+      - Show all persons
+    post:
+      description: Insert a new person into the database, and you can create a new
+        family tree with this person
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Person'
+            type: array
+        "404":
+          description: Not Found
+          schema:
+            type: object
+      summary: CreatePerson() Create a new person
+      tags:
+      - Create person
+  /v1/person/family:
+    post:
+      description: In this endpoint you can create a family, that is, put the ID of
+        the reference person, another person and the relationship between the two
+        in the database. All by ID
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Family'
+            type: array
+        "404":
+          description: Not Found
+          schema:
+            type: object
+      summary: Creates the relationship between two people to create a family and
+        family tree
+      tags:
+      - Create a new family
+  /v1/person/genealogy/{id}:
+    get:
+      description: Returns the closest family members to the reference person, without
+        delving into the family tree of the other members
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Genealogy'
+            type: array
+        "404":
+          description: Not Found
+          schema:
+            type: object
+      summary: ShowFamily() Returns the closest family members to the reference person
+      tags:
+      - Show Family Tree
+    post:
+      description: This table has just two columns in database, that means you will
+        just put the ID of the referenced person in the table family.
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Genealogy'
+            type: array
+        "404":
+          description: Not Found
+          schema:
+            type: object
+      summary: Create a new reference (person ID) for a new Genealogy, which is relate
+        to the table 'family'
+      tags:
+      - Create a new Genealogy
+swagger: "2.0"

@@ -195,6 +195,9 @@ const docTemplate = `{
                 "personFamily": {
                     "$ref": "#/definitions/models.Person"
                 },
+                "personFamilyID": {
+                    "type": "integer"
+                },
                 "relationship": {
                     "$ref": "#/definitions/models.Relationship"
                 }

@@ -11,6 +11,8 @@ definitions:
         $ref: '#/definitions/models.Person'
       personFamily:
         $ref: '#/definitions/models.Person'
+      personFamilyID:
+        type: integer
       relationship:
         $ref: '#/definitions/models.Relationship'
     type: object

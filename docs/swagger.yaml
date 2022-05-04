@@ -44,7 +44,7 @@ definitions:
 host: localhost:5050
 info:
   contact:
-    url: "LinkedIn    \thttps://www.linkedin.com/in/tulliopimentelbarbosa/"
+    url: https://www.linkedin.com/in/tulliopimentelbarbosa/
   description: This is the documentation of the Genealogy API
   license:
     name: Apache 2.0
@@ -88,6 +88,24 @@ paths:
       summary: CreatePerson() Create a new person
       tags:
       - Create person
+  /v1/person/{id}:
+    get:
+      description: Returns the closest family members to the reference person, without
+        delving into the family tree of the other members
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Genealogy'
+            type: array
+        "404":
+          description: Not Found
+          schema:
+            type: object
+      summary: ShowFamily() Returns the closest family members to the reference person
+      tags:
+      - Show Family Tree
   /v1/person/family:
     post:
       description: In this endpoint you can create a family, that is, put the ID of
@@ -110,8 +128,8 @@ paths:
       - Create a new family
   /v1/person/genealogy/{id}:
     get:
-      description: Returns the closest family members to the reference person, without
-        delving into the family tree of the other members
+      description: This endpoint will go deep, will get all the persons of the family
+        tree. That means will get all persons related to each other
       responses:
         "200":
           description: OK
@@ -123,9 +141,9 @@ paths:
           description: Not Found
           schema:
             type: object
-      summary: ShowFamily() Returns the closest family members to the reference person
+      summary: Get the entire genealogy of the family of the referenced person
       tags:
-      - Show Family Tree
+      - Show the entire Genealogy
     post:
       description: This table has just two columns in database, that means you will
         just put the ID of the referenced person in the table family.

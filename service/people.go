@@ -13,7 +13,7 @@ import (
 // @Tags Show Family Tree
 // @Success 200 {array} models.Genealogy
 // @Failure 404 {object} object
-// @Router /v1/person/genealogy/{id} [get]
+// @Router /v1/person/{id} [get]
 func ShowFamily(c *gin.Context){
 
 	id := c.Param("id")

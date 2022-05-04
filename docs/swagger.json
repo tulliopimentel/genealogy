@@ -5,7 +5,7 @@
         "title": "Genealogy API",
         "termsOfService": "http://swagger.io/terms/",
         "contact": {
-            "url": "LinkedIn    \thttps://www.linkedin.com/in/tulliopimentelbarbosa/"
+            "url": "https://www.linkedin.com/in/tulliopimentelbarbosa/"
         },
         "license": {
             "name": "Apache 2.0",
@@ -93,11 +93,11 @@
         },
         "/v1/person/genealogy/{id}": {
             "get": {
-                "description": "Returns the closest family members to the reference person, without delving into the family tree of the other members",
+                "description": "This endpoint will go deep, will get all the persons of the family tree. That means will get all persons related to each other",
                 "tags": [
-                    "Show Family Tree"
+                    "Show the entire Genealogy"
                 ],
-                "summary": "ShowFamily() Returns the closest family members to the reference person",
+                "summary": "Get the entire genealogy of the family of the referenced person",
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -122,6 +122,32 @@
                     "Create a new Genealogy"
                 ],
                 "summary": "Create a new reference (person ID) for a new Genealogy, which is relate to the table 'family'",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.Genealogy"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/person/{id}": {
+            "get": {
+                "description": "Returns the closest family members to the reference person, without delving into the family tree of the other members",
+                "tags": [
+                    "Show Family Tree"
+                ],
+                "summary": "ShowFamily() Returns the closest family members to the reference person",
                 "responses": {
                     "200": {
                         "description": "OK",

@@ -10,4 +10,5 @@ func RunMigrations(db *gorm.DB){
 	db.AutoMigrate(models.Person{})
 	db.AutoMigrate(models.Family{})
 	db.AutoMigrate(models.Relationship{})
+	db.AutoMigrate(models.Genealogy{})
 }

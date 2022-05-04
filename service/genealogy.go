@@ -36,9 +36,6 @@ func ShowGenealogy(c *gin.Context){
 	Preload("Person").
 	Preload("PersonFamily").
 	Preload("PersonFamily.Person").
-	Preload("PersonFamily.Family").
-	Preload("PersonFamily.Family.PersonFamily").
-	Preload("PersonFamily.Family.Relationship").
 	Preload("PersonFamily.PersonFamily").
 	Preload("PersonFamily.Relationship").
 	Find(&genealogy, "person_id = ?", newid).Error

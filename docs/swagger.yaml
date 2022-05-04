@@ -56,6 +56,20 @@ info:
   version: "1.0"
 paths:
   /v1/person:
+    delete:
+      description: will delete a person of the database
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Person'
+        "404":
+          description: Not Found
+          schema:
+            type: object
+      summary: DeletePerson() will delete a person in database
+      tags:
+      - Delete a Person
     get:
       description: Get all persons of the database, even if is not related to each
         other
@@ -75,7 +89,9 @@ paths:
       - Show all persons
     post:
       description: Insert a new person into the database, and you can create a new
-        family tree with this person
+        family tree with this person. You can also update some person, you just have
+        to input the ID following by the name you want to update. If you wanna just
+        insert a new name, no needs of insert an ID
       responses:
         "200":
           description: OK
@@ -109,10 +125,25 @@ paths:
       tags:
       - Show Family Tree
   /v1/person/family:
+    delete:
+      description: In this endpoint you can delete a family
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Family'
+        "404":
+          description: Not Found
+          schema:
+            type: object
+      summary: delete a row from the 'families' table from the family ID
+      tags:
+      - Delete a family
     post:
       description: In this endpoint you can create a family, that is, put the ID of
         the reference person, another person and the relationship between the two
-        in the database. All by ID
+        in the database. All by ID. You can also update a family row if you put and
+        ID that already exists
       responses:
         "200":
           description: OK

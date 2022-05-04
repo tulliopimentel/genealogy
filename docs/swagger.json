@@ -41,7 +41,7 @@
                 }
             },
             "post": {
-                "description": "Insert a new person into the database, and you can create a new family tree with this person",
+                "description": "Insert a new person into the database, and you can create a new family tree with this person. You can also update some person, you just have to input the ID following by the name you want to update. If you wanna just insert a new name, no needs of insert an ID",
                 "tags": [
                     "Create person"
                 ],
@@ -63,15 +63,57 @@
                         }
                     }
                 }
+            },
+            "delete": {
+                "description": "will delete a person of the database",
+                "tags": [
+                    "Delete a Person"
+                ],
+                "summary": "DeletePerson() will delete a person in database",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Person"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
             }
         },
         "/v1/person/family": {
             "post": {
-                "description": "In this endpoint you can create a family, that is, put the ID of the reference person, another person and the relationship between the two in the database. All by ID",
+                "description": "In this endpoint you can create a family, that is, put the ID of the reference person, another person and the relationship between the two in the database. All by ID. You can also update a family row if you put and ID that already exists",
                 "tags": [
                     "Create a new family"
                 ],
                 "summary": "Creates the relationship between two people to create a family and family tree",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Family"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "In this endpoint you can delete a family",
+                "tags": [
+                    "Delete a family"
+                ],
+                "summary": "delete a row from the 'families' table from the family ID",
                 "responses": {
                     "200": {
                         "description": "OK",

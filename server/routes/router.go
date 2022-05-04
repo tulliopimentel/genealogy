@@ -12,17 +12,17 @@ func ConfigRoutes(router *gin.Engine) *gin.Engine{
 
 	main := router.Group("/v1")
 	{
-		people := main.Group("person")
+		person := main.Group("person")
 		{
-			people.GET("/:id", service.ShowFamily)
-			people.GET("/", service.ShowPeoples)
-			people.POST("/", service.CreatePerson)
-		
-
-			people.GET("/genealogy/:id", service.ShowGenealogy)
-			people.POST("/genealogy", service.CreateGenealogy)
-
-			people.POST("/family", service.CreateFamily)
+			person.GET("/:id", service.ShowFamily)
+			person.GET("/", service.ShowPeoples)
+			person.POST("/", service.CreatePerson)
+			person.DELETE("/", service.DeletePerson)
+			person.PUT("/")
+			person.GET("/genealogy/:id", service.ShowGenealogy)
+			person.POST("/genealogy", service.CreateGenealogy)
+			person.POST("/family", service.CreateFamily)
+			person.DELETE("/family", service.DeleteFamily)
 		}
 
 		main.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))

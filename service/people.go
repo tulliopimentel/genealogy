@@ -68,7 +68,7 @@ func CreatePerson(c *gin.Context){
 		return
 	}
 
-	err = db.Create(&person).Error
+	err = db.Save(&person).Error
 
 	if err != nil{
 		c.JSON(400, gin.H{

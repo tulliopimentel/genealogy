@@ -8,7 +8,7 @@ import (
 )
 
 // @Summary Creates the relationship between two people to create a family and family tree
-// @Description In this endpoint you can create a family, that is, put the ID of the reference person, another person and the relationship between the two in the database. All by ID. You can also update a family row if you put and ID that already exists
+// @Description In this endpoint you can create a family, that is, put the ID of the reference person, another person and the relationship between the two in the database. All by ID. You can also update a family row if you put and ID that already exists.
 // @Tags Create a new family
 // @Success 200 {object} models.Family
 // @Failure 404 {object} object

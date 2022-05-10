@@ -55,7 +55,7 @@ func ShowGenealogy(c *gin.Context){
 }
 
 // @Summary Create a new reference (person ID) for a new Genealogy, which is relate to the table 'family'
-// @Description This table has just two columns in database, that means you will just put the ID of the referenced person in the table family.
+// @Description This table has just two columns in database, that means you will just put the ID of the referenced person in the table family. You can also update a genealogy row if you put and ID that already exists.
 // @Tags Create a new Genealogy
 // @Success 200 {array} models.Genealogy
 // @Failure 404 {object} object

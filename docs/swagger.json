@@ -88,7 +88,7 @@
         },
         "/v1/person/family": {
             "post": {
-                "description": "In this endpoint you can create a family, that is, put the ID of the reference person, another person and the relationship between the two in the database. All by ID. You can also update a family row if you put and ID that already exists",
+                "description": "In this endpoint you can create a family, that is, put the ID of the reference person, another person and the relationship between the two in the database. All by ID. You can also update a family row if you put and ID that already exists.",
                 "tags": [
                     "Create a new family"
                 ],
@@ -156,7 +156,7 @@
                 }
             },
             "post": {
-                "description": "This table has just two columns in database, that means you will just put the ID of the referenced person in the table family.",
+                "description": "This table has just two columns in database, that means you will just put the ID of the referenced person in the table family. You can also update a genealogy row if you put and ID that already exists.",
                 "tags": [
                     "Create a new Genealogy"
                 ],
